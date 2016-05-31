@@ -1,0 +1,35 @@
+{
+  "name": "he11d0g/yii2-comments",
+  "description": "Comments test",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "widgets",
+    "helpers",
+    "semantic",
+    "semantic ui"
+  ],
+  "homepage": "https://github.com/he11d0g/yii2-comments",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/he11d0g/yii2-comments/issues",
+    "source": "https://github.com/he11d0g/yii2-comments"
+  },
+  "authors": [
+    {
+      "name": "Pavlovskiy Vitaliy",
+      "email": "im@helldog.net",
+      "homepage": "http://helldog.net",
+      "role": "Web Developer"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2",
+    "bower-asset/semantic": "~2"
+  },
+  "autoload": {
+    "psr-4": {
+      "HD\\yii\\module\\Comments\\": ""
+    }
+  }
+}
