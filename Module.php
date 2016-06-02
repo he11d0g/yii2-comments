@@ -10,14 +10,33 @@ use HD\yii\module\Comments\assets\CommentsJSAsset;
 
 class Module extends \yii\base\Module
 {
+    /**
+     * @var string
+     */
     public $controllerNamespace = 'HD\yii\module\Comments\controllers';
 
+    /**
+     *  @var string
+     */
     const VERSION = '0.0.1';
+
+    /**
+     * Конфиг с настройками юзера
+     *  @var array
+     */
 
     public $user = [];
 
+    /**
+     * Конфиг с настройками reCaptcha.
+     * @var array
+     */
     public $captcha = [];
 
+    /**
+     * Соотношения ключей. Слева ключ, для использование в виджете, справа в таблице юзеров. Написал во имя инкапсуляции
+     * @var array
+     */
     private $_defaultMap = [
         'email' => 'email',
         'date' => 'date',

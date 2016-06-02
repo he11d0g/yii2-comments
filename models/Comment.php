@@ -15,6 +15,10 @@ use Yii;
 class Comment extends \yii\db\ActiveRecord
 {
 
+    /**
+     * Параметры юзера из модуля
+     * @var array
+     */
     private $_userParams;
     /**
      * @inheritdoc
@@ -54,6 +58,10 @@ class Comment extends \yii\db\ActiveRecord
         $this->_userParams = Yii::$app->getModule('comments')->user;
     }
 
+    /**
+     * Связь коментов с юзером
+     * @return $this
+     */
     public function getUser()
     {
         if(isset($this->_userParams['class'])){
@@ -65,6 +73,11 @@ class Comment extends \yii\db\ActiveRecord
         return $this;
     }
 
+    /**
+     * Получаения ключа для таблицы с Юзерами
+     * @param $param
+     * @return bool
+     */
     public function getUserAttr($param)
     {
         return isset($this->_userParams['keyMap'][$param],$this->user)
@@ -76,7 +89,8 @@ class Comment extends \yii\db\ActiveRecord
     {
         if (parent::beforeSave($insert)) {
 
-            $this->body = strip_tags($this->body,'<a></a><br><br/>');
+            //Пропускаем только <a>
+            $this->body = strip_tags($this->body,'<a></a>');
 
             return true;
         }

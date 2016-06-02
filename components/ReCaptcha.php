@@ -4,8 +4,16 @@ namespace HD\yii\module\Comments\components;
 use yii\base\Component;
 
 class ReCaptcha extends Component{
+    /**
+     * @var string
+     */
     public static $url = 'https://www.google.com/recaptcha/api/siteverify';
 
+    /**
+     * @param $request
+     * @param $secret
+     * @return bool
+     */
     public static function validate($request,$secret)
     {
         $url = self::getLink($request,$secret);
@@ -15,11 +23,20 @@ class ReCaptcha extends Component{
         return isset($res['success']) && $res['success'];
     }
 
+    /**
+     * @param $request
+     * @param $secret
+     * @return string
+     */
     private static function getLink($request,$secret)
     {
         return self::$url.'?secret='.$secret.'&response='.$request.'&remoteip='.$_SERVER['REMOTE_ADDR'];
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
     private static function getCurlData($url)
     {
         $curl = curl_init();

@@ -67,7 +67,7 @@ class Comments extends \yii\base\Widget
     }
 
     /**
-     *
+     * Устнавока конфига для JS
      */
     public function registerJs()
     {

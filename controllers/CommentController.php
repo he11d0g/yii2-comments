@@ -31,16 +31,20 @@ class CommentController extends \yii\base\Controller
         ];
     }
 
+    /**
+     * Все запросы идут через этот экшн. Думаю так будет удобней, и ненужно плодить ссылки в конфиге для JS
+     * @throws HttpException
+     */
     public function actionRequest()
     {
         $data = '';
         if (Yii::$app->request->getIsPost()) {
             $post = Yii::$app->request->post();
             switch ($post['action']) {
-                case 'reload':
+                case 'reload': //обновление списка коментов
                     $data = $this->_reloadComments($post['page_id']);
                     break;
-                case 'add':
+                case 'add'://добавление нового комента
                     $captchaConfig = Yii::$app->getModule('comments')->captcha;
                     //Проверка каптчи
                     if ($captchaConfig){
@@ -48,7 +52,6 @@ class CommentController extends \yii\base\Controller
                     } else {
                         $captchaStatus = true;
                     }
-
                     $data = $captchaStatus && $this->_addComment($post['body'], $post['page_id'])
                         ? 'Удалено'
                         : 'Ошибка';
@@ -58,7 +61,7 @@ class CommentController extends \yii\base\Controller
                         ? 'Удалено'
                         : 'Ошибка';
                     break;
-                case 'update':
+                case 'update': //обновление комента
                     $data = $this->_updateComment($post['id'], $post['body'])
                         ? 'Сохранено'
                         : 'Ошибка';
@@ -71,6 +74,11 @@ class CommentController extends \yii\base\Controller
         echo $data;
     }
 
+    /**
+     * @param $id
+     * @param $body
+     * @return mixed
+     */
     private function _updateComment($id, $body)
     {
         $comment = Comment::findOne(['id' => $id]);
@@ -79,11 +87,20 @@ class CommentController extends \yii\base\Controller
         return $comment->update();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     private function _deleteComment($id)
     {
         return Comment::deleteAll(['id' => $id]);
     }
 
+    /**
+     * @param $body
+     * @param $page_id
+     * @return mixed
+     */
     private function _addComment($body, $page_id)
     {
         $comment = new Comment();
@@ -95,11 +112,20 @@ class CommentController extends \yii\base\Controller
         return $comment->save();
     }
 
+    /**
+     * @param $page_id
+     * @return mixed
+     */
     private function _reloadComments($page_id)
     {
         return Comments::widget(['pageID' => $page_id, 'renderOnlyComments' => true]);
     }
 
+    /**
+     * @param $response
+     * @param $secret
+     * @return bool
+     */
     private function _validateCaptcha($response, $secret)
     {
         return ReCaptcha::validate($response, $secret);

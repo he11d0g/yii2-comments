@@ -80,7 +80,7 @@ var hdComments = {
         $(comment).find(".view-form").removeClass("hidden");
     },
     convertLinks : function(text){
-        return text.replace(/(htt(p|ps):\/\/[.\w/=&?-]+)(\s|$)/gi, "<a href='$1' target='_blank'>$1</a>")
+        return text.replace(/(htt(p|ps):\/\/[.\w/=&?-]+)(\s|$)/gi, "<a href=\"$1\" target=\"_blank\">$1</a>")
     }
 };
 
