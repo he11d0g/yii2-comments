@@ -4,10 +4,7 @@
   "type": "yii2-extension",
   "keywords": [
     "yii2",
-    "widgets",
-    "helpers",
-    "semantic",
-    "semantic ui"
+    "widgets"
   ],
   "homepage": "https://github.com/he11d0g/yii2-comments",
   "license": "MIT",

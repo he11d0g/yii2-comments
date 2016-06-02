@@ -9,7 +9,7 @@ namespace HD\yii\module\Comments\assets;
 use Yii;
 use yii\web\AssetBundle;
 
-class CommentsCSSAsset extends AssetBundle
+class SemanticUIAsset extends AssetBundle
 {
     /**
      * @var string

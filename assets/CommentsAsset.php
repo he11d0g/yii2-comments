@@ -9,22 +9,23 @@ namespace HD\yii\module\Comments\assets;
 use Yii;
 use yii\web\AssetBundle;
 
-class CommentsJSAsset extends AssetBundle
+class CommentsAsset extends AssetBundle
 {
     /**
      * @var string
      */
-    public $sourcePath = '@vendor/bower/semantic/dist';
+    public $sourcePath = '@vendor/he11d0g/yii2-comments/assets/';
     /**
      * @var array
      */
     public $depends = [
         'yii\web\JqueryAsset',
-        'HD\yii\module\Comments\assets\CommentsCSSAsset'
+        'HD\yii\module\Comments\assets\SemanticUIAsset'
     ];
     public function init()
     {
-        $this->js[] = 'semantic.min.js';
+        $this->js[] = 'js/main.js';
+        $this->css[] = 'css/main.css';
         parent::init();
     }
 }
